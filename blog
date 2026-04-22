@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intrapreneurship | Alicorp y Gloria</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: rgba(255,255,255,0.08);
+      --card-strong: rgba(255,255,255,0.12);
+      --text: #e5eefc;
+      --muted: #b7c4dd;
+      --line: rgba(255,255,255,0.14);
+      --primary: #60a5fa;
+      --secondary: #a78bfa;
+      --accent: #34d399;
+      --danger: #f97316;
+      --shadow: 0 12px 40px rgba(0,0,0,0.25);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(96,165,250,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(167,139,250,0.14), transparent 25%),
+        linear-gradient(180deg, #0b1120 0%, #111827 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(10, 15, 27, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: var(--shadow);
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .95rem;
+      padding: .5rem .8rem;
+      border-radius: 999px;
+      transition: .25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: white;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      padding: 4.8rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .9fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .panel,
+    .card,
+    .timeline-item,
+    .compare-card,
+    .footer-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 2rem;
+      min-height: 100%;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .45rem .85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3, h4, p { margin-top: 0; }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      line-height: 1.02;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      margin-top: 1.4rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: .95rem 1.2rem;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      color: #081120;
+      background: linear-gradient(135deg, #93c5fd, #a78bfa);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .panel {
+      padding: 1.25rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: .2rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    section {
+      padding: 1.2rem 0 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      letter-spacing: -0.02em;
+      margin-bottom: .35rem;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 68ch;
+    }
+
+    .grid-2,
+    .grid-3,
+    .compare-grid,
+    .footer-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .compare-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1.1fr .9fr; }
+
+    .card,
+    .compare-card,
+    .footer-card {
+      padding: 1.35rem;
+    }
+
+    .card h3,
+    .compare-card h3,
+    .footer-card h3 {
+      margin-bottom: .55rem;
+      font-size: 1.08rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: .45rem .75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .accent { color: #bfdbfe; }
+    .accent-green { color: #a7f3d0; }
+    .accent-orange { color: #fdba74; }
+
+    .timeline {
+      display: grid;
+      gap: .9rem;
+    }
+
+    .timeline-item {
+      padding: 1.1rem 1.15rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+    }
+
+    .timeline-year {
+      font-weight: 800;
+      font-size: .95rem;
+      color: #c7d2fe;
+      margin-bottom: .35rem;
+    }
+
+    .pill-title {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+
+    ul.clean {
+      margin: .5rem 0 0;
+      padding-left: 1.1rem;
+    }
+
+    ul.clean li { margin-bottom: .55rem; color: var(--muted); }
+
+    .quote {
+      padding: 1.1rem 1.2rem;
+      border-radius: 18px;
+      background: rgba(52,211,153,0.08);
+      border: 1px solid rgba(52,211,153,0.18);
+      color: #dcfce7;
+      font-weight: 600;
+    }
+
+    .compare-card header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .9rem;
+    }
+
+    .badge {
+      padding: .45rem .8rem;
+      border-radius: 999px;
+      font-size: .84rem;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .badge-blue { background: rgba(96,165,250,0.14); color: #bfdbfe; }
+    .badge-purple { background: rgba(167,139,250,0.14); color: #ddd6fe; }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .75rem;
+      margin-top: 1rem;
+    }
+
+    .score {
+      padding: .9rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .score strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: .15rem;
+    }
+
+    .team-list {
+      display: grid;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+
+    .team-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .85rem 1rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer {
+      padding: 2rem 0 3rem;
+    }
+
+    .small {
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    .top-link {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(17,24,39,0.88);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      color: white;
+      z-index: 30;
+    }
+
+    @media (max-width: 1000px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .compare-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: .9rem 0;
+      }
+      .nav-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(var(--max), calc(100% - 1rem)); }
+      .hero { padding-top: 3rem; }
+      .hero-card, .card, .panel, .compare-card, .footer-card, .timeline-item { padding: 1rem; }
+      .stat-grid, .score-grid { grid-template-columns: 1fr; }
+      .team-item { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#inicio" class="brand">
+        <span class="brand-badge">🚀</span>
+        <span>Intrapreneurship · TB1</span>
+      </a>
+      <div class="nav-links">
+        <a href="#resumen">Resumen</a>
+        <a href="#alicorp">Alicorp</a>
+        <a href="#gloria">Gloria</a>
+        <a href="#comparacion">Comparación</a>
+        <a href="#conclusiones">Conclusiones</a>
+        <a href="#equipo">Equipo</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="container hero-grid">
+      <article class="hero-card">
+        <div class="eyebrow">Trabajo Parcial 1 · Caso Alicorp y Gloria</div>
+        <h1>Innovación desde adentro: <span class="accent">Alicorp</span> y <span class="accent-green">Gloria</span></h1>
+        <p>
+          Esta página resume el análisis del curso de <strong>Intrapreneurship</strong>, comparando cómo dos empresas peruanas
+          impulsan la innovación interna, enfrentan barreras organizacionales y responden a los cambios del mercado.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#comparacion">Ver análisis comparativo</a>
+          <a class="btn btn-secondary" href="#equipo">Ver integrantes</a>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Innovación interna</span>
+          <span class="tag">Cultura organizacional</span>
+          <span class="tag">Modelos de intraemprendimiento</span>
+          <span class="tag">Sostenibilidad</span>
+        </div>
+      </article>
+
+      <aside class="hero-side">
+        <div class="stat-grid">
+          <div class="panel">
+            <div class="stat-number">2</div>
+            <div class="muted">empresas analizadas</div>
+          </div>
+          <div class="panel">
+            <div class="stat-number">8+</div>
+            <div class="muted">países con presencia de Alicorp</div>
+          </div>
+          <div class="panel">
+            <div class="stat-number">40</div>
+            <div class="muted">nuevos productos anuales en Gloria</div>
+          </div>
+          <div class="panel">
+            <div class="stat-number">2025</div>
+            <div class="muted">proyección clave de innovación</div>
+          </div>
+        </div>
+        <div class="panel quote">
+          “El intraemprendimiento no solo depende de tener ideas, sino de crear condiciones para que esas ideas se conviertan en valor.”
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="resumen">
+      <div class="section-head">
+        <div>
+          <h2>Resumen ejecutivo</h2>
+          <p>
+            El trabajo presenta dos estilos distintos de innovación corporativa: Alicorp con un enfoque más dinámico,
+            digital y orientado a oportunidades; y Gloria con una lógica más estructurada, eficiente y enfocada en la mejora incremental.
+          </p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>¿Qué analiza este trabajo?</h3>
+          <p class="muted">La actualidad empresarial de ambas compañías, su cultura innovadora, los cambios del entorno, las barreras internas y su modelo de intraemprendimiento.</p>
+        </article>
+        <article class="card">
+          <h3>Hallazgo central</h3>
+          <p class="muted">Aunque ambas innovan, lo hacen desde lógicas diferentes: Alicorp prioriza flexibilidad, digitalización y alianzas; Gloria se enfoca en eficiencia, sostenibilidad e I+D aplicado.</p>
+        </article>
+        <article class="card">
+          <h3>Valor académico</h3>
+          <p class="muted">La comparación permite entender cómo la cultura y la estructura organizacional influyen directamente en la capacidad de intraemprender.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="alicorp">
+      <div class="section-head">
+        <div>
+          <h2>Alicorp</h2>
+          <p>Una empresa líder en consumo masivo que combina escala regional, transformación digital y apertura a nuevas oportunidades de negocio.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <div class="pill-title">🏢 Actualidad empresarial</div>
+          <p class="muted">
+            Alicorp es una empresa peruana de consumo masivo con presencia regional y un portafolio amplio que incluye alimentos,
+            productos de cuidado del hogar y nutrición animal. Su liderazgo se apoya en marcas reconocidas, amplitud de mercado y expansión continua.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Consumo masivo</span>
+            <span class="tag">B2B</span>
+            <span class="tag">Nutrición animal</span>
+            <span class="tag">Expansión regional</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="pill-title">💡 Cultura innovadora</div>
+          <ul class="clean">
+            <li>Impulsa la digitalización mediante su plataforma B2B <strong>Insuma</strong>.</li>
+            <li>Desarrolla productos especializados para clientes gastronómicos y panificadores.</li>
+            <li>Promueve innovación abierta con startups y programas de talento joven.</li>
+            <li>Integra sostenibilidad, liderazgo diverso y transformación tecnológica.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="timeline" style="margin-top:1rem;">
+        <article class="timeline-item">
+          <div class="timeline-year">Entorno que la presiona a innovar</div>
+          <p class="muted">Inflación, digitalización acelerada, nuevos hábitos de consumo, competencia global y regulación nutricional obligan a Alicorp a reaccionar con rapidez y adaptarse constantemente.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-year">Barreras internas</div>
+          <p class="muted">La burocracia propia de su escala, la presión por resultados de corto plazo y la integración de adquisiciones pueden frenar proyectos innovadores de maduración lenta.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-year">Modelo identificado</div>
+          <p class="muted"><strong>Modelo oportunista.</strong> La innovación emerge desde la alta dirección y también desde equipos internos que detectan oportunidades y las convierten en propuestas con impacto comercial.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-year">Caso representativo</div>
+          <p class="muted"><strong>Insuma</strong> destaca como ejemplo de intraemprendimiento exitoso al conectar a pequeños negocios con soluciones ágiles de compra y mejorar su eficiencia comercial.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gloria">
+      <div class="section-head">
+        <div>
+          <h2>Gloria</h2>
+          <p>Una marca emblemática del sector alimenticio peruano que ha consolidado su liderazgo a partir de eficiencia productiva, sostenibilidad y mejora continua.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <div class="pill-title">🥛 Actualidad empresarial</div>
+          <p class="muted">
+            Gloria lidera el mercado de lácteos industrializados en Perú y ha diversificado su portafolio hacia bebidas y otros alimentos. Su fortaleza radica en la marca, la cobertura nacional y la articulación con miles de productores.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Industria láctea</span>
+            <span class="tag">Liderazgo nacional</span>
+            <span class="tag">Diversificación</span>
+            <span class="tag">Cadena productiva</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="pill-title">⚙️ Cultura innovadora</div>
+          <ul class="clean">
+            <li>Promueve aprendizaje continuo y apertura al error como parte del proceso innovador.</li>
+            <li>Invierte en automatización, robótica, análisis de datos y trazabilidad.</li>
+            <li>Relaciona innovación con sostenibilidad energética, hídrica y productiva.</li>
+            <li>Explora alianzas con startups e instituciones académicas para actualizar capacidades.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="timeline" style="margin-top:1rem;">
+        <article class="timeline-item">
+          <div class="timeline-year">Entorno que la impulsa a cambiar</div>
+          <p class="muted">Las exigencias ambientales, las preferencias por productos más saludables, las normativas de etiquetado y la competencia del sector obligan a Gloria a modernizar procesos y portafolio.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-year">Barreras internas</div>
+          <p class="muted">Su trayectoria, jerarquía y orientación a la estabilidad pueden volver más lenta la adopción de cambios disruptivos o de proyectos con riesgo elevado.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-year">Modelo identificado</div>
+          <p class="muted"><strong>Modelo facilitador.</strong> La empresa asigna recursos planificados a I+D y fomenta la mejora desde distintas áreas, sin apostar fuertemente por disrupciones fuera de su negocio principal.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-year">Caso representativo</div>
+          <p class="muted">El desarrollo de bebidas vegetales y la innovación en empaques y eficiencia energética reflejan un intraemprendimiento incremental, alineado con la sostenibilidad y el mercado actual.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="comparacion">
+      <div class="section-head">
+        <div>
+          <h2>Comparación estratégica</h2>
+          <p>Ambas empresas innovan, pero sus caminos son distintos. Esta comparación resume su lógica de intraemprendimiento.</p>
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <article class="compare-card">
+          <header>
+            <h3>Alicorp</h3>
+            <span class="badge badge-blue">Enfoque dinámico</span>
+          </header>
+          <ul class="clean">
+            <li>Más orientada a oportunidades de mercado y expansión.</li>
+            <li>Alta conexión con digitalización y soluciones B2B.</li>
+            <li>Combina innovación interna con innovación abierta.</li>
+            <li>Mayor flexibilidad cultural frente al cambio.</li>
+          </ul>
+          <div class="score-grid">
+            <div class="score"><strong>Alta</strong><span class="small">adaptabilidad</span></div>
+            <div class="score"><strong>Alta</strong><span class="small">orientación al mercado</span></div>
+          </div>
+        </article>
+
+        <article class="compare-card">
+          <header>
+            <h3>Gloria</h3>
+            <span class="badge badge-purple">Enfoque estructurado</span>
+          </header>
+          <ul class="clean">
+            <li>Más enfocada en eficiencia operativa y sostenibilidad.</li>
+            <li>La innovación aparece como mejora del negocio central.</li>
+            <li>El soporte viene de I+D, automatización y control de procesos.</li>
+            <li>La cultura prioriza estabilidad antes que disrupción.</li>
+          </ul>
+          <div class="score-grid">
+            <div class="score"><strong>Alta</strong><span class="small">eficiencia</span></div>
+            <div class="score"><strong>Media</strong><span class="small">velocidad de cambio</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid-3" style="margin-top:1rem;">
+        <article class="card">
+          <h3>Modelo de intraemprendimiento</h3>
+          <p class="muted"><strong>Alicorp:</strong> oportunista. <br><strong>Gloria:</strong> facilitador.</p>
+        </article>
+        <article class="card">
+          <h3>Mayor fortaleza</h3>
+          <p class="muted"><strong>Alicorp:</strong> rapidez para conectar innovación con negocio. <br><strong>Gloria:</strong> capacidad de innovar sin perder eficiencia.</p>
+        </article>
+        <article class="card">
+          <h3>Mayor reto</h3>
+          <p class="muted"><strong>Alicorp:</strong> gestionar complejidad y burocracia. <br><strong>Gloria:</strong> vencer rigidez cultural y aversión al riesgo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="conclusiones">
+      <div class="section-head">
+        <div>
+          <h2>Conclusiones</h2>
+          <p>El intraemprendimiento no tiene una sola forma: depende de la cultura, la estructura, el mercado y la estrategia de cada organización.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>1. Innovar es una decisión cultural</h3>
+          <p class="muted">La innovación interna prospera cuando la empresa permite experimentar, aprender y escalar ideas con respaldo organizacional.</p>
+        </article>
+        <article class="card">
+          <h3>2. La estructura condiciona la velocidad</h3>
+          <p class="muted">Las compañías más flexibles suelen reaccionar más rápido, mientras que las más jerárquicas innovan con mayor control pero menos velocidad.</p>
+        </article>
+        <article class="card">
+          <h3>3. No toda innovación es disruptiva</h3>
+          <p class="muted">Mejorar procesos, lanzar nuevas líneas o hacer más sostenible la operación también es intraemprendimiento cuando crea valor real.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="equipo">
+      <div class="section-head">
+        <div>
+          <h2>Equipo y contexto académico</h2>
+          <p>Trabajo desarrollado para el curso de Intrapreneurship de la Universidad Peruana de Ciencias Aplicadas.</p>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <article class="footer-card">
+          <h3>Datos del trabajo</h3>
+          <p class="muted"><strong>Curso:</strong> Intrapreneurship</p>
+          <p class="muted"><strong>Docente:</strong> Benites Lavado, Sirhan Williams</p>
+          <p class="muted"><strong>Grupo:</strong> 03</p>
+          <p class="muted"><strong>Universidad:</strong> Universidad Peruana de Ciencias Aplicadas (UPC)</p>
+        </article>
+
+        <article class="footer-card">
+          <h3>Integrantes</h3>
+          <div class="team-list">
+            <div class="team-item">
+              <span>Angello Martin Castillo Castillejo</span>
+              <span class="small">U20221F940</span>
+            </div>
+            <div class="team-item">
+              <span>Naomi Dallana Palacios Vásquez</span>
+              <span class="small">U202019597</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="footer">
+      <div class="footer-card">
+        <h3>Idea de presentación</h3>
+        <p class="muted">
+          Esta página está diseñada para que puedan exponer desplazándose por secciones: primero el resumen, luego Alicorp, después Gloria,
+          la comparación final y las conclusiones. También sirve como enlace para compartir con compañeros o docentes.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <a href="#inicio" class="top-link" aria-label="Volver arriba">↑</a>
+
+  <script>
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [...links].map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = '#' + entry.target.id;
+        const link = document.querySelector(`.nav-links a[href="${id}"]`);
+        if (entry.isIntersecting) {
+          links.forEach(a => a.classList.remove('active'));
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { threshold: 0.35 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
